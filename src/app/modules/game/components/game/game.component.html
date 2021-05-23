@@ -1,4 +1,7 @@
 <div class="game-container">
+    <h2>Scores: <strong>{{gameService.scores}}</strong> 
+        <button (click)="gameService.resetGame()" 
+            class="new-game-button">Start new game!</button></h2>
     <div class="grid-container">
         <div class="grid-row">
             <div class="grid-cell"></div>
@@ -26,15 +29,14 @@
         </div>
 
         <div class="items">
-            <div class="item" [ngStyle]="{top: '12px', left: '12px', 'background-color': 'brown'}">
-                <div class="item-title">8</div>
+            <div *ngFor="let item of gameService.items"
+             class="item" 
+             [ngStyle]="getStyles(item)">
+                <div class="item-title">{{item.value}}</div>
             </div>
-            <div class="item" [ngStyle]="{top: '148px', left: '12px', 'background-color': 'blue'}">
-                <div class="item-title">2</div>
-            </div>
-            <div class="item" [ngStyle]="{top: '12px', left: '144px', 'background-color':'navy'}">
-                <div class="item-title">4</div>
-            </div>
+        </div>
+        <div *ngIf="gameService.theEnd" class="overlat">
+            <div class="overlay-text">The End</div>
         </div>
     </div>
 </div>
